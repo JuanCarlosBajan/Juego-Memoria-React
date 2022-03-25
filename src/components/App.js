@@ -1,17 +1,39 @@
 import React, {useState} from "react";
 import Card from "./Card"
+import '../styles/App.css'
 
 export default function App() {
     
-    const [values,setValues] = useState(shuffle([1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9]));
+    const [values,setValues] = useState(shuffle([
+        {value: 1,number: 1,selected: false,},
+        {value: 1,number: 2,selected: false,},
+        {value: 2,number: 1,selected: false,},
+        {value: 2,number: 2,selected: false,},
+        {value: 3,number: 1,selected: false,},
+        {value: 3,number: 2,selected: false,},
+        {value: 4,number: 1,selected: false,},
+        {value: 4,number: 2,selected: false,},
+        {value: 5,number: 1,selected: false,},
+        {value: 5,number: 2,selected: false,},
+        {value: 6,number: 1,selected: false,},
+        {value: 6,number: 2,selected: false,},
+        {value: 7,number: 1,selected: false,},
+        {value: 7,number: 2,selected: false,},
+        {value: 8,number: 1,selected: false,},
+        {value: 8,number: 2,selected: false,},
+        {value: 9,number: 1,selected: false,},
+        {value: 9,number: 2,selected: false,},
+        
+    ]));
     const [selected, setSelected] = useState([]);
 
-    function remove(value) {
-        setValues(values.filter((element) => (element!== value)))
+    function remove(card) {
+        setValues(values.filter((element) => (element['value']!== card['value'])))
     }
 
     function verifyGame() {
-        if (selected[0] === selected[1]) {
+        if (selected[0]['value'] === selected[1]['value'] 
+        && selected[0]['number'] !== selected[1]['number']) {
             remove(selected[0])
             remove(selected[1])
         }
@@ -36,9 +58,9 @@ export default function App() {
       }
 
     return (
-    <div>
+    <div className="container">
         {values.map(function (value, index) {
-            return <Card key={index} value={value} fun={cardSelect}/>
+            return <Card key={index} card={value} fun={cardSelect}/>
         })
         }
     </div>
