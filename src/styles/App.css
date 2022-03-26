@@ -1,5 +1,19 @@
+body {
+  background-color: #94c9a9;
+}
+
 .container {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+}
+
+.title {
+  width: 100%;
+}
+
+.textTitle {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  text-align: center;
+  color: #885053;
 }

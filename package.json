@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/JuanCarlosBajan/Juego-Memoria-React#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -27,7 +30,9 @@
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.4",
     "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",

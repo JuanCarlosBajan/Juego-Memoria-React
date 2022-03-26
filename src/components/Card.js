@@ -1,18 +1,23 @@
 import React from "react";
 import '../styles/Card.css'
+import "../fonts/Kidsco.otf";
 
 export default function Card(props) {
+
+    function getFlipped() {
+        return props.card['selected']? "flip" : ""
+    }
+
     return (
-        <div onClick={()=> {props.fun(props.card['value'])}}>
-            <div className="flip-card" style={props.card['selected']? {transform: 'rotateY(180deg)'}: {}}>
-                <div className="flip-card-inner">
+        <div onClick={()=> {props.selected.length <2 ? props.fun(props.card) : null}}>
+            
+            <div className={"flip-card" }>
+                <div className={"flip-card-inner " + getFlipped()} >
                     <div className="flip-card-front">
-                    <h1>{props.card['value']}</h1>
+                        <h1>?</h1>
                     </div>
-                    <div className="flip-card-back">
-                    <h1>John Doe</h1>
-                    <p>Architect & Engineer</p>
-                    <p>We love that guy</p>
+                    <div className={"flip-card-back " + getFlipped()}>
+                    <h1>{props.card['value']}</h1>
                     </div>
                 </div>
             </div>

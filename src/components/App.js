@@ -34,17 +34,31 @@ export default function App() {
     function verifyGame() {
         if (selected[0]['value'] === selected[1]['value'] 
         && selected[0]['number'] !== selected[1]['number']) {
-            remove(selected[0])
-            remove(selected[1])
+            window.setTimeout(() => remove(selected[0]),500)
+            window.setTimeout(() => remove(selected[1]),500)
         }
-        console.log(selected);
         setSelected([])
+        window.setTimeout(() => cardDeselect(),1000)
+        
     }
 
-    function cardSelect(value) {
-        selected.push(value)
+    function cardSelect(card) {
+        updateCard({value: card.value, number: card.number, selected: !card.selected})
+        selected.push({value: card.value, number: card.number, selected: !card.selected})
         selected.length===2? verifyGame(): null;
     }
+
+    function updateCard(newCard) {
+        setValues(values => values.map(
+            (value,i) => value.value === newCard.value && value.number === newCard.number? 
+            newCard:value))
+    }
+
+    function cardDeselect() {
+        setValues(values => values.map(
+            (element) => ({value: element.value, number: element.number, selected: false})))
+    }
+    
 
     function shuffle(array) {
         let currentIndex = array.length,  randomIndex;
@@ -58,11 +72,16 @@ export default function App() {
       }
 
     return (
-    <div className="container">
-        {values.map(function (value, index) {
-            return <Card key={index} card={value} fun={cardSelect}/>
-        })
-        }
-    </div>
+        <div>
+            <div className="title">
+                <h1 className="textTitle">Memoria</h1>
+            </div>
+            <div className="container">
+                {values.map(function (value, index) {
+                    return <Card key={index} card={value} fun={cardSelect} selected={selected}/>
+                })
+                }
+            </div>
+        </div>
     )
 }
