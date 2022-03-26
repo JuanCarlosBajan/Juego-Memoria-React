@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Card from "./Card"
 import '../styles/App.css'
 
@@ -25,7 +25,14 @@ export default function App() {
         {value: 9,number: 2,selected: false,},
         
     ]));
+
+    const [counter,setCounter] = useState(0);
+
     const [selected, setSelected] = useState([]);
+
+    function addCount() {
+        setCounter(counter + 1);
+    }
 
     function remove(card) {
         setValues(values.filter((element) => (element['value']!== card['value'])))
@@ -58,7 +65,6 @@ export default function App() {
         setValues(values => values.map(
             (element) => ({value: element.value, number: element.number, selected: false})))
     }
-    
 
     function shuffle(array) {
         let currentIndex = array.length,  randomIndex;
@@ -75,13 +81,18 @@ export default function App() {
         <div>
             <div className="title">
                 <h1 className="textTitle">Memoria</h1>
+                <h5 className="textTitle">Contador de Clicks: {counter}</h5>
             </div>
             <div className="container">
                 {values.map(function (value, index) {
-                    return <Card key={index} card={value} fun={cardSelect} selected={selected}/>
+                    return <Card key={index} card={value} fun={cardSelect} counter={addCount} selected={selected}/>
                 })
                 }
             </div>
+            {
+                values.length === 0? <h1 className="textTitle">Juego Completado</h1> : <></>
+            }
+
         </div>
     )
 }

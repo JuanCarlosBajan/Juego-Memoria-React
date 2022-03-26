@@ -9,7 +9,7 @@ export default function Card(props) {
     }
 
     return (
-        <div onClick={()=> {props.selected.length <2 ? props.fun(props.card) : null}}>
+        <div onClick={()=> {props.selected.length <2 ? props.fun(props.card) : null; props.counter();}}>
             
             <div className={"flip-card" }>
                 <div className={"flip-card-inner " + getFlipped()} >
